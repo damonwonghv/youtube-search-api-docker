@@ -1,0 +1,33 @@
+{
+  "name": "youtube-search-api-docker",
+  "version": "1.0.0",
+  "description": "youtube search api docker pre-built docker using Youtube-search-api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "youtube-search-api",
+    "youtube",
+    "api",
+    "search",
+    "api",
+    "youtube",
+    "api"
+  ],
+  "author": "thisisdamon",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "swagger-jsdoc": "6.2.8",
+    "swagger-ui-express": "4.6.3",
+    "winston": "^3.9.0",
+    "youtube-search-api": "^1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.9"
+  }
+}
