@@ -140,3 +140,4 @@ build/*
 .vscode
 .vscode/launch.json
 package-lock.json
+README_DOCKER.md
