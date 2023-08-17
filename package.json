@@ -1,6 +1,6 @@
 {
   "name": "youtube-search-api-docker",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "youtube search api docker pre-built docker using Youtube-search-api",
   "main": "app.js",
   "scripts": {
@@ -22,10 +22,11 @@
   "dependencies": {
     "cors": "2.8.5",
     "express": "4.18.2",
+    "express-rate-limit": "6.8.1",
     "swagger-jsdoc": "6.2.8",
     "swagger-ui-express": "4.6.3",
-    "winston": "^3.9.0",
-    "youtube-search-api": "^1.2.0"
+    "winston": "3.9.0",
+    "youtube-search-api": "1.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.14.9"

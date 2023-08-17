@@ -7,7 +7,7 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const logger = require("./src/utils/logger.util");
 const apiRoutes = require("./src/api.router");
 const loggerMiddleware = require("./src/middlewares/logger.middleware");
-
+const rateLimitMiddleware = require("./src/middlewares/ratelimiter.middleware");
 
 logger.info("youtube-search-api server starting...");
 
@@ -17,8 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-
-const server=http.createServer(app);
+const server = http.createServer(app);
 
 const options = {
   definition: {
@@ -32,14 +31,14 @@ const options = {
 };
 
 const openapiSpecification = swaggerJsdoc(options);
-app.use("/api/v1",loggerMiddleware, apiRoutes);
+app.use("/api/v1", loggerMiddleware, rateLimitMiddleware.apiLimiter, apiRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use("/docs", (req, res) => {
   res.status(200).send(openapiSpecification);
 });
 
-app.get("/", (req, res) => {
-    res.status(200).json({ success: true, status: "online" });
+app.get("/", rateLimitMiddleware.generalLimiter, (req, res) => {
+  res.status(200).json({ success: true, status: "online" });
 });
 
 function errorHandler(err, req, res, next) {
@@ -48,7 +47,7 @@ function errorHandler(err, req, res, next) {
   }
   res.status(500);
   res.render("error", { error: err });
-  logger.error(err)
+  logger.error(err);
 }
 
 app.use((err, req, res, next) => {
